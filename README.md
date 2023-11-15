@@ -1,22 +1,19 @@
-# Artifact Name
-Analysis and Formal Specification of OpenJDK's BitSet: Proof files
+# Overview
+This repository contains the files that go along with our paper, "Analysis and Formal Specification of OpenJDK's BitSet". Specifically, we have the following:
+* The original BitSet.java code file, without edits. 
+* The edited BitSet.java code file, which contains our formal specification.
+* The other .java files and the necessary .key file in order to use the files with KeY 2.10.0.
+* A series of proofs completed in KeY.
 
-# Summary
-Goal: This artifact provides the original version of the BitSet class, as well as the version annotated with a JML specification. This artifact further includes the KeY prover executable, and a number of completed proofs relevant to the paper.
-Authors: Andy S. Tatman, Hans-Dieter A. Hiep, Stijn de Gouw.
-Paper reference: Paper 4647
-Cite as: Tatman, Andy S., Hiep, Hans-Dieter A., & de Gouw, Stijn. (2023). Analysis and Formal Specification of OpenJDK's BitSet: Proof files. Zenodo. https://doi.org/10.5281/zenodo.8043379
+The original proof files artifact can be found at [here on Zenodo](https://doi.org/10.5281/zenodo.8043379), and the full paper can be found [here on Springer's website](https://doi.org/10.1007/978-3-031-47705-8_8). 
 
-The full paper can be found at: https://doi.org/10.1007/978-3-031-47705-8_8
+# Details for the artifact:
+* Goal: This artifact provides the original version of the BitSet class, as well as the version annotated with a JML specification. This artifact further includes the KeY prover executable, and a number of completed proofs relevant to the paper.
+* Authors: Andy S. Tatman, Hans-Dieter A. Hiep, Stijn de Gouw.
+* Cite as: Tatman, Andy S., Hiep, Hans-Dieter A., & de Gouw, Stijn. (2023). Analysis and Formal Specification of OpenJDK's BitSet: Proof files. Zenodo. https://doi.org/10.5281/zenodo.8043379
 
-# Hardware Requirements
-The standard settings of the JVM appear to be sufficient to run KeY, load any of the completed proofs, and to replicate any of our completed proofs.
-It is recommended to have at least 2GB RAM to run KeY smoothly.
-The KeY application runs on OpenJDK version 11 as installed on the iFM virtual machine.
-
-## Set-up
-Unzip the compressed folder.
-Navigate to the top-level directory within the (now uncompressed) zip.
+## Set-up for KeY
+You can download KeY (version 2.10.0) from [the KeY project's website](https://www.key-project.org/download/). 
 You can then launch the application in a terminal using:
 
 $ java -jar key-2.10.0-exe.jar
@@ -25,26 +22,25 @@ Click away the 'Load Examples' dialogue window.
 You can now load completed proofs (.proof files) or proof goals (.key files) through File->Load in the top left.
 In order to load .proof files, the layout of the directory within the zip must not be changed.
 
-
-# Test Instructions
+# Accessing completed proofs
 Open the KeY executable provided.
 In KeY, navigate to File->Load and then select the relevant .proof file.
 The following completed proofs can be loaded in:
-/Proofs/BitSet-Methods/BitSet()-private.proof
-/Proofs/BitSet-Methods/BitSet()-public.proof
-/Proofs/BitSet-Methods/BitSet(int)-private.proof
-/Proofs/BitSet-Methods/BitSet(int)-public.proof
-/Proofs/BitSet-Methods/checkInvariants.proof
-/Proofs/BitSet-Methods/checkRange.proof
-/Proofs/BitSet-Methods/clear().proof
-/Proofs/BitSet-Methods/ensureCapacity.proof
-/Proofs/BitSet-Methods/expandTo.proof
-/Proofs/BitSet-Methods/recalculateWordsInUse.proof
-/Proofs/BitSet-Methods/wordindex.proof
-/Proofs/Article-Assertions/FromIndex-ToIndex-Div64.proof
-/Proofs/Article-Assertions/narrower-sourcein-TargetWo-wordsIU.proof
-/Proofs/Article-Assertions/sourcein-TargetWo-wordsIU.proof
-/Proofs/Article-Assertions/targetWords-Bound.proof
+* /Proofs/BitSet-Methods/BitSet()-private.proof
+* /Proofs/BitSet-Methods/BitSet()-public.proof
+* /Proofs/BitSet-Methods/BitSet(int)-private.proof
+* /Proofs/BitSet-Methods/BitSet(int)-public.proof
+* /Proofs/BitSet-Methods/checkInvariants.proof
+* /Proofs/BitSet-Methods/checkRange.proof
+* /Proofs/BitSet-Methods/clear().proof
+* /Proofs/BitSet-Methods/ensureCapacity.proof
+* /Proofs/BitSet-Methods/expandTo.proof
+* /Proofs/BitSet-Methods/recalculateWordsInUse.proof
+* /Proofs/BitSet-Methods/wordindex.proof
+* /Proofs/Article-Assertions/FromIndex-ToIndex-Div64.proof
+* /Proofs/Article-Assertions/narrower-sourcein-TargetWo-wordsIU.proof
+* /Proofs/Article-Assertions/sourcein-TargetWo-wordsIU.proof
+* /Proofs/Article-Assertions/targetWords-Bound.proof
 
 Once the proof has loaded in, you can see each proof step carried out in the "Proof" tab on the left of the screen. 
 A completed proof will have a green folder at the top of the "Proof" tab (The "Proof Tree" folder should be green.)
@@ -52,7 +48,7 @@ Alternatively, there should be no open goals in the Goals tab.
 When clicking on a specific rule in the "Proof" tab, KeY highlights what part of the Sequent this rule was applied to.
 
 
-# Replication Instructions / Replication with Limited Resources
+# Replicating completed proofs
 To reproduce proofs in KeY, the two kinds of settings need to be adjusted: Taclet Options and Proof Search Strategy.
 Below in this README, there are two tables that display the settings we used.
 
@@ -118,19 +114,15 @@ In the Proof Search Strategy tab:
 | User-Specific taclet sets | All off                |
 ```
 
-Regarding the two asterisks:
--Max. Rule Applications:
+## Regarding the two asterisks:
+* Max. Rule Applications:
 Generally, around 5000 seems a reasonable amount when using the 'Close Provable goals' macro. 
 The exception to this is when a program contains bitwise shift operations, such as in the wordIndex(int) method.
 When shift operations occur, KeY's macros such as 'Finish symbolic execution' appear to get stuck endlessly unfolding the shift operation. 
 We advise setting the max rule applications to no more than 100 or 200 at a time when using this macro, and manually unfolding the shift operation. (See Proofs/wordIndex.proof)
 
--Arithmetic Treatment:
+* Arithmetic Treatment:
 In order to keep proof goals human-readable, we advise setting this option to Basic when using macros such as 'Finish symbolic execution'.
 In order to complete the proof, set the option to DefOps after the macro has completed.
 
-
-# Examples of Usage:
-The JML specifications provided in Edited-BitSet/src/java/util/BitSet.java can be used in further specification/verification efforts, for code that uses the BitSet class.
-The completed proofs in Proofs/BitSet-Methods demonstrate that many of these specifications have been proven correct.
 
