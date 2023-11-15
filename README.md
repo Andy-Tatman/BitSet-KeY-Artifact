@@ -16,7 +16,7 @@ The original proof files artifact can be found at [here on Zenodo](https://doi.o
 You can download KeY (version 2.10.0) from [the KeY project's website](https://www.key-project.org/download/). 
 You can then launch the application in a terminal using:
 
-$ java -jar key-2.10.0-exe.jar
+`$ java -jar key-2.10.0-exe.jar`
 
 Click away the 'Load Examples' dialogue window.
 You can now load completed proofs (.proof files) or proof goals (.key files) through File->Load in the top left.
