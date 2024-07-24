@@ -13,7 +13,7 @@ The original proof files artifact can be found at [here on Zenodo](https://doi.o
 * Cite as: Tatman, Andy S., Hiep, Hans-Dieter A., & de Gouw, Stijn. (2023). Analysis and Formal Specification of OpenJDK's BitSet: Proof files. Zenodo. https://doi.org/10.5281/zenodo.8043379
 
 ## Set-up for KeY
-You can download KeY (version 2.10.0) from [the KeY project's website](https://www.key-project.org/download/). 
+You can download KeY (version 2.10.0) from [the KeY project's website](https://www.key-project.org/download/). Alternatively, the version of KeY used here is included in the artifact.
 You can then launch the application in a terminal using:
 
 `$ java -jar key-2.10.0-exe.jar`
@@ -21,6 +21,11 @@ You can then launch the application in a terminal using:
 Click away the 'Load Examples' dialogue window.
 You can now load completed proofs (.proof files) or proof goals (.key files) through File->Load in the top left.
 In order to load .proof files, the layout of the directory within the zip must not be changed.
+
+## New rules
+A number of rules have been added, which can be found in /Edited-BitSet/BitSet.key.
+Many of these rules have been proven to be correct in KeY. These completed proofs can be found in /Proofs/Verified-Rules.
+The rules that have not been proven correct are necessary to prove set(int), but are otherwise not used in any proofs.
 
 # Accessing completed proofs
 Open the KeY executable provided.
@@ -33,14 +38,19 @@ The following completed proofs can be loaded in:
 * /Proofs/BitSet-Methods/checkInvariants.proof
 * /Proofs/BitSet-Methods/checkRange.proof
 * /Proofs/BitSet-Methods/clear().proof
-* /Proofs/BitSet-Methods/ensureCapacity.proof
-* /Proofs/BitSet-Methods/expandTo.proof
 * /Proofs/BitSet-Methods/recalculateWordsInUse.proof
 * /Proofs/BitSet-Methods/wordindex.proof
+* /Proofs/BitSet-Methods/Recorded-proofs/ensureCapacity.proof
+* /Proofs/BitSet-Methods/Recorded-proofs/expandTo.proof
 * /Proofs/Article-Assertions/FromIndex-ToIndex-Div64.proof
 * /Proofs/Article-Assertions/narrower-sourcein-TargetWo-wordsIU.proof
 * /Proofs/Article-Assertions/sourcein-TargetWo-wordsIU.proof
 * /Proofs/Article-Assertions/targetWords-Bound.proof
+* /Proofs/BitSet-Methods/Recorded-proofs/set(int)-part-4-Complete.proof
+Futhermore, the following partially completed proofs can be loaded in:
+* /Proofs/BitSet-Methods/Recorded-proofs/set(int)-part-1.proof
+* /Proofs/BitSet-Methods/Recorded-proofs/set(int)-part-2.proof
+* /Proofs/BitSet-Methods/Recorded-proofs/set(int)-part-3.proof
 
 Once the proof has loaded in, you can see each proof step carried out in the "Proof" tab on the left of the screen. 
 A completed proof will have a green folder at the top of the "Proof" tab (The "Proof Tree" folder should be green.)
@@ -68,7 +78,9 @@ In this case, a list of possible method contracts is displayed.
 Most methods in the list can be verified, and thus have completed proofs in the Proofs/BitSet-Methods/ directory. 
 These proofs cannot be completed automatically with the current settings, but they can be recreated interactively (this takes some experience with KeY to figure out).
 
-Due to various limitations of KeY (see the article), the following contracts / methods do not have completed proofs: get(int,int), set(int), length().
+Specifically regarding the set(int) method, we have included partially completed proofs. (See the README in Recorded-Proofs.) 
+
+Due to various limitations of KeY (see the article linked above), the following contracts / methods do not have completed proofs: get(int,int), length().
 Furthermore, KeY does show the method wordsToSeq(), but it cannot be verified as it is a model method and does not have a contract.
 
 # KeY settings used

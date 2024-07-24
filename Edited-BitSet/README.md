@@ -7,3 +7,7 @@ java/lang/Integer.java: An unused specification has been given for numberOfTrail
 java/lang/Long.java: An unused specification has been given for numberOfTrailingZeros(long i) (hidden in comments & unused by KeY), as well as the method's implementation.
 java/lang/Math.java: Contracts have been provided for the max(int,int) and min(int,int) methods.
 java/util/Arrays.java: KeY's contract for Arrays.copyOf(long[], int) is used here. Original source for this contract: https://git.key-project.org/key-public/key/-/blob/stable/key.core/src/main/resources/de/uka/ilkd/key/java/JavaRedux/java/util/Arrays.java
+
+BitSet.key has rules added to it. 
+Many of these rules have been proven to be correct in KeY. These completed proofs can be found in /Proofs/Verified-Rules.
+The rules that have not been proven correct are necessary to prove set(int), but are otherwise not used in any proofs.
